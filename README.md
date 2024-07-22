@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Devlinks - share your links with the world
 
-## Getting Started
+<!-- Add badges here -->
+<div align="center">
+  <a href="https://nextjs.org" title="Visit Next.js" target="_blank">
+    <img alt="Next.js" src="https://img.shields.io/badge/-NEXTJS-black?style=for-the-badge&logo=Next.js" />
+  </a>
+  <a href="https://typescriptlang.org" title="More Typescript" target="_blank">
+    <img alt="Typescript" src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" />
+  </a>
+  </a>
+    <a href="https://www.buymeacoffee.com/elitenoire" title="Support Me" target="_blank">
+    <img alt="Donation" src="https://img.shields.io/badge/Buy_Me_A_Coffee-3300CC?style=for-the-badge&logo=buy-me-a-coffee&logoColor=white" />
+  </a>
+</div>
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+A link-sharing app for HNG11 Stage 5a task
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- 📊 Links Editor
+- 🌐 Built with Next.js 14
+- 🎨 Styled with TailwindCSS and Shadcn UI
+- 🚀 Deployed on Vercel
 
-## Learn More
+### Figma Design
 
-To learn more about Next.js, take a look at the following resources:
+- [Figma](https://www.figma.com/design/gY3QlGMHxB81euVxIYfBSr/link-sharing-app?node-id=47-54&t=g37Nq6KYbjhi2Ap2-0)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 💯 Credits
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- Google Fonts - Instrument Sans(body)
