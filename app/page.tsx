@@ -1,7 +1,13 @@
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+import { redirect } from 'next/navigation'
 
-    </main>
-  );
+import { getUser } from '@/lib/supabase/server'
+
+export default async function Home() {
+  // const user = await getUser()
+  // if (user) {
+  //   redirect('/manage/profile')
+  // } else {
+  //   redirect('/login')
+  // }
+  return null
 }
