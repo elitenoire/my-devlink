@@ -25,6 +25,7 @@ const config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        surface: 'hsl(var(--surface))',
         background: 'hsl(var(--background))',
         foreground: {
           DEFAULT: 'hsl(var(--foreground))',
@@ -68,6 +69,7 @@ const config = {
       },
       boxShadow: {
         active: '0 0 32px 0 hsl(var(--primary)/0.25)',
+        subtle: '0 0 32px 0 hsl(0 0% 0%)/0.1)',
       },
       keyframes: {
         'accordion-down': {

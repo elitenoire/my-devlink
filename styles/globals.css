@@ -4,15 +4,16 @@
 
 @layer base {
   :root {
+    --surface: 0 0% 100%;
     --background: 0 0% 98%;
     --foreground: 0 0% 45%;
     --foreground-dark: 0 0% 20%;
 
-    --card: 0 0% 98%;
-    --card-foreground: 0 0% 45%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 20%;
 
-    --popover: 0 0% 98%;
-    --popover-foreground: 0 0% 45%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 20%;
 
     --primary: 252 100% 62%;
     --primary-foreground: 0 0% 100%;
@@ -84,9 +85,14 @@
 
 @layer components {
   .heading-m {
-    @apply text-[32px] font-bold leading-[48px] text-foreground-dark;
+    @apply text-[24px] font-bold leading-[36px] text-foreground-dark md:text-[32px] md:leading-[48px];
   }
   .body-s {
     @apply text-xs leading-[18px];
+  }
+}
+@layer utilities {
+  .filter-primary {
+    filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
   }
 }

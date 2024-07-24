@@ -15,6 +15,8 @@ const buttonVariants = cva(
           'border border-primary bg-transparent text-primary hover:bg-primary-superlight focus-visible:bg-primary-superlight disabled:opacity-25',
         destructive:
           'bg-destructive text-destructive-foreground hover:bg-destructive/90 focus-visible:ring-2 disabled:opacity-50',
+        tab: 'bg-transparent hover:text-primary focus-visible:text-primary data-[active]:bg-primary-superlight data-[active]:text-primary',
+
         outline:
           'border border-input bg-background hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 disabled:opacity-50',
         ghost:
@@ -26,6 +28,7 @@ const buttonVariants = cva(
         sm: 'h-9 rounded-md px-3',
         lg: 'h-11 rounded-md px-8',
         icon: 'h-10 w-10',
+        auto: 'h-auto w-auto',
       },
     },
     defaultVariants: {
