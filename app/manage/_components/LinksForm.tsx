@@ -1,7 +1,6 @@
 'use client'
 
-import { useState, useCallback, useTransition } from 'react'
-import * as z from 'zod'
+import { useCallback, useTransition } from 'react'
 import { toast } from 'sonner'
 import { useForm, useFieldArray } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -16,6 +15,7 @@ import { usePlatformsStore } from '@/stores/platforms'
 import { type ILinksFormData, linksFormSchema } from '@/lib/schema'
 
 export default function LinksForm() {
+  const [isFormPending, startFormTransition] = useTransition()
   const links = useLinksStore.useLinks()
   const platforms = usePlatformsStore.usePlatforms()
   const setLinks = useLinksStore.useSetLinks()
@@ -41,16 +41,36 @@ export default function LinksForm() {
     })
   }, [append, code, slug])
 
+  const onSubmit = (values: ILinksFormData) => {
+    startFormTransition(async () => {
+      try {
+        setLinks(values.links)
+        // const { success, message } = await signIn(values)
+        // if (success) {
+        //   replace('/manage/profile')
+        // }
+        // if (message) {
+        //   toast.error(message)
+        // }
+      } catch (e) {
+        console.error(e)
+        toast.error('Something went wrong')
+      }
+    })
+  }
+
   const { isValid, isDirty } = form.formState
   const isSubmittable = !!isDirty && !!isValid
   const isEmpty = fields.length === 0
 
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormCard
           title="Customize your links"
           description="Add/edit/remove links below and then share all your profiles with the world!"
+          disabled={isEmpty}
+          pending={isFormPending}
         >
           <div className="space-y-6">
             <Button type="button" variant="secondary" className="w-full" onClick={handleAppend}>
@@ -65,6 +85,7 @@ export default function LinksForm() {
                   index={index}
                   onRemove={remove}
                   formName="links"
+                  disabled={isFormPending}
                 />
               ))}
             {isEmpty && <EmptyLinks />}

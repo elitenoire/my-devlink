@@ -16,11 +16,13 @@ import PhotoIcon from '@/public/icons/photo.svg'
 import { SyncProfileForm } from '@/app/manage/_components/WatchedForm'
 
 export function ProfileForm() {
+  const [isFormPending, startFormTransition] = useTransition()
   const uri = useProfileStore.useUri()
   const firstname = useProfileStore.useFirstname()
   const lastname = useProfileStore.useLastname()
   const email = useProfileStore.useEmail()
   const avatar = useProfileStore.useAvatar()
+  const setProfile = useProfileStore.useSetProfile()
   const form = useForm<IProfileFormData>({
     resolver: zodResolver(profileFormSchema),
     defaultValues: {
@@ -33,12 +35,30 @@ export function ProfileForm() {
     // mode: 'onChange',
   })
 
+  const onSubmit = (values: IProfileFormData) => {
+    startFormTransition(async () => {
+      try {
+        setProfile(values)
+        // const { success, message } = await signIn(values)
+        // if (success) {
+        //   replace('/manage/profile')
+        // }
+        // if (message) {
+        //   toast.error(message)
+        // }
+      } catch (e) {
+        console.error(e)
+        toast.error('Something went wrong')
+      }
+    })
+  }
+
   const { isValid, isDirty } = form.formState
   const isSubmittable = !!isDirty && !!isValid
 
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormCard
           title="Profile Details"
           description="Add your details to create a personal touch to your profile."
@@ -63,7 +83,7 @@ export function ProfileForm() {
               fieldClass="md:flex md:gap-4 md:items-center"
               labelClass="md:text-base md:w-[240px] md:text-foreground"
               containerClass="md:flex-1"
-              // disabled={isPending}
+              disabled={isFormPending}
             />
             <FormInput
               name="firstname"
@@ -74,7 +94,7 @@ export function ProfileForm() {
               fieldClass="md:flex md:gap-4 md:items-center"
               labelClass="md:text-base md:w-[240px] md:text-foreground"
               containerClass="md:flex-1"
-              // disabled={isPending}
+              disabled={isFormPending}
             />
             <FormInput
               name="lastname"
@@ -85,7 +105,7 @@ export function ProfileForm() {
               fieldClass="md:flex md:gap-4 md:items-center"
               labelClass="md:text-base md:w-[240px] md:text-foreground"
               containerClass="md:flex-1"
-              // disabled={isPending}
+              disabled={isFormPending}
             />
             <FormInput
               name="email"
@@ -96,7 +116,7 @@ export function ProfileForm() {
               fieldClass="md:flex md:gap-4 md:items-center"
               labelClass="md:text-base md:w-[240px] md:text-foreground"
               containerClass="md:flex-1"
-              // disabled={isPending}
+              disabled={isFormPending}
             />
           </div>
         </FormCard>
