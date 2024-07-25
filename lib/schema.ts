@@ -47,6 +47,18 @@ export const linksFormSchema = z.object({
   ),
 })
 
-export type ILinkFormData = z.infer<typeof linksFormSchema>
-export type ILinkFormDataErrors = z.inferFlattenedErrors<typeof linksFormSchema>
-export type ILink = ILinkFormData['links'][number]
+export type ILinksFormData = z.infer<typeof linksFormSchema>
+export type ILinksFormDataErrors = z.inferFlattenedErrors<typeof linksFormSchema>
+export type ILink = ILinksFormData['links'][number]
+
+export const profileFormSchema = z.object({
+  uri: z.string(),
+  firstname: z.string(),
+  lastname: z.string(),
+  email: z.string().email('Email is invalid').or(z.literal('')),
+  avatar: z.string().or(z.literal('')),
+})
+
+export type IProfileFormData = z.infer<typeof profileFormSchema>
+export type IProfileFormDataErrors = z.inferFlattenedErrors<typeof profileFormSchema>
+export type IProfile = IProfileFormData

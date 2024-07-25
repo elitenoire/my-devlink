@@ -29,6 +29,7 @@ type FormInputProps<T extends FieldValues = FieldValues, P extends FieldPath<T> 
   fieldClass?: HTMLProps<HTMLDivElement>['className']
   descriptionClass?: HTMLProps<HTMLParagraphElement>['className']
   errorClass?: HTMLProps<HTMLParagraphElement>['className']
+  containerClass?: HTMLProps<HTMLDivElement>['className']
 } & (Omit<InputProps, 'name'> | { children?: (field: ControllerRenderProps<T, P>) => ReactElement })
 
 type RendererProps<
@@ -45,14 +46,16 @@ function renderer<T extends FieldValues = FieldValues, P extends FieldPath<T> = 
   descriptionClass,
   fieldClass,
   errorClass,
+  containerClass,
   standalone,
   children,
   ...rest
 }: RendererProps<T, P>): ControllerProps<T, P>['render'] {
   // eslint-disable-next-line react/display-name
   return ({ field }) => {
+    console.log('rendering... ', label)
     return (
-      <FormItem className={cn('space-y-1', fieldClass)}>
+      <FormItem className={cn('relative space-y-1', fieldClass)}>
         {label && (
           <FormLabel className={cn('body-s text-foreground-dark', labelClass)}>{label}</FormLabel>
         )}
@@ -63,7 +66,9 @@ function renderer<T extends FieldValues = FieldValues, P extends FieldPath<T> = 
             {children && typeof children === 'function' ? (
               children(field)
             ) : (
-              <Input {...rest} {...field} />
+              <div className={containerClass}>
+                <Input {...rest} {...field} />
+              </div>
             )}
           </FormControl>
         )}
@@ -72,7 +77,12 @@ function renderer<T extends FieldValues = FieldValues, P extends FieldPath<T> = 
             {description}
           </FormDescription>
         )}
-        <FormMessage className={cn('body-s text-right', errorClass)} />
+        <FormMessage
+          className={cn(
+            'body-s absolute bottom-1 right-3 bg-surface pb-2 pl-1 pt-1 text-right',
+            errorClass
+          )}
+        />
       </FormItem>
     )
   }

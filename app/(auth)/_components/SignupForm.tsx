@@ -48,9 +48,6 @@ export function SignupForm() {
       try {
         const { success, message } = await signUp(values)
         if (success) {
-          //   toast({
-          //     description: 'Logged in as Admin 🎉',
-          //   })
           replace('/manage/profile')
         }
         if (message) {

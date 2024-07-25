@@ -13,6 +13,8 @@ import linkUrl from '@/public/icons/link.svg?url'
 
 import type { LinkBlockProps } from '@/app/manage/_components/LinkBlock'
 
+import type { ILinksFormData } from '@/lib/schema'
+
 const testPlatforms = [
   {
     id: '1',
@@ -54,15 +56,14 @@ export function LinkBlockInput({
   disabled,
   index,
 }: LinkBlockInputProps) {
-  const { control, register, setValue } = useFormContext()
+  const { control, register, setValue } = useFormContext<ILinksFormData>()
   const selectedPlatform = useWatch({ control, name: `links.${index}.platform` as const })
   const slug = testPlatforms.find((platform) => platform.code === selectedPlatform)?.slug
-  //   const handleClick = useCallback(() => {
-  //     onRemove(index)
-  //   }, [index, onRemove])
 
   useEffect(() => {
-    setValue(`links.${index}.slug`, slug)
+    if (slug) {
+      setValue(`links.${index}.slug`, slug)
+    }
   }, [index, setValue, slug])
 
   return (
@@ -76,7 +77,12 @@ export function LinkBlockInput({
         startIcon={LinkIcon}
         disabled={disabled}
       />
-      <input readOnly {...register(`links.${index}.slug` as const)} placeholder="Slug" />
+      <input
+        className="sr-only"
+        readOnly
+        {...register(`links.${index}.slug` as const)}
+        placeholder="Slug"
+      />
     </>
   )
 }

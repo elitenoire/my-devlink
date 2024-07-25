@@ -26,6 +26,7 @@ const config = {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         surface: 'hsl(var(--surface))',
+        blank: 'hsl(var(--blank))',
         background: 'hsl(var(--background))',
         foreground: {
           DEFAULT: 'hsl(var(--foreground))',

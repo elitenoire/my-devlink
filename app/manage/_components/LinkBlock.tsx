@@ -2,9 +2,8 @@
 
 import NextImage from 'next/image'
 import { useCallback } from 'react'
-import { useFormContext, useWatch } from 'react-hook-form'
+import { useFormContext } from 'react-hook-form'
 import { Tally2Icon } from 'lucide-react'
-import { FormInput } from '@/components/common/FormInput'
 import { FormControl } from '@/components/ui/form'
 import { Button } from '@/components/ui/button'
 import {
@@ -14,8 +13,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-
+import { FormInput } from '@/components/common/FormInput'
+import { DynamicSVG } from '@/components/ui/dynamic-svg'
 import { LinkBlockInput } from '@/app/manage/_components/LinkBlockInput'
+import { ILinksFormData } from '@/lib/schema'
+import type { IPlatform } from '@/stores/platforms'
 
 import LinkIcon from '@/public/icons/link.svg'
 import linkUrl from '@/public/icons/link.svg?url'
@@ -33,7 +35,7 @@ type Platform = {
 export type LinkBlockProps = {
   index: number
   formName: string
-  platforms?: Platform[]
+  platforms?: IPlatform[]
   onRemove: (index: number) => void
   disabled?: boolean
 }
@@ -45,7 +47,7 @@ export function LinkBlock({
   index,
   onRemove,
 }: LinkBlockProps) {
-  const { control } = useFormContext()
+  const { control } = useFormContext<ILinksFormData>()
 
   const handleClick = useCallback(() => {
     onRemove(index)
@@ -88,6 +90,25 @@ export function LinkBlock({
               </SelectTrigger>
             </FormControl>
             <SelectContent>
+              {platforms?.map(({ id, code, title, logoUrl }) => (
+                <SelectItem key={id} label={title} value={code}>
+                  <DynamicSVG
+                    filePath={logoUrl}
+                    alt=""
+                    size={16}
+                    className="group-data-[state=checked]:filter-primary size-4"
+                    unoptimized
+                  />
+                  {/* <span className="size-4 text-foreground">
+                    <NextImage
+                      src={platform.logoUrl}
+                      alt=""
+                      unoptimized
+                      className="group-data-[state=checked]:filter-primary"
+                    />
+                  </span> */}
+                </SelectItem>
+              ))}
               <SelectItem label="Github" value="github">
                 <span className="size-4 text-foreground">
                   <NextImage

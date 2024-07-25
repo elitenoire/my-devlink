@@ -42,9 +42,6 @@ export function LoginForm() {
         const { success, message } = await signIn(values)
         if (success) {
           replace('/manage/profile')
-          //   toast({
-          //     description: 'Logged in as Admin 🎉',
-          //   })
         }
         if (message) {
           toast.error(message)

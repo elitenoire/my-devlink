@@ -1,3 +1,4 @@
+import { ProfileLinksPreview } from '@/components/common/ProfileLinksPreview'
 import DeviceFrame from '@/public/icons/device.svg'
 
 export default function Preview() {
@@ -6,7 +7,9 @@ export default function Preview() {
       <div className="absolute inset-0">
         <DeviceFrame className="w-full" />
       </div>
-      <div className="h-full px-[24px] py-[53.5px]"></div>
+      <div className="hidden-scroll z-1 relative h-[calc(100%-2rem)] overflow-y-auto px-[24px] py-[53.5px]">
+        <ProfileLinksPreview mode="edit" />
+      </div>
     </div>
   )
 }

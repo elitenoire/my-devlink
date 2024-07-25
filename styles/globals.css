@@ -32,6 +32,8 @@
     --destructive: 0 100% 61%;
     --destructive-foreground: 0 0% 98%;
 
+    --blank: 0 0% 93%;
+
     --border: 0 0% 85%;
     --input: 0 0% 85%;
     /* --ring: 252 36% 72%; */
@@ -92,6 +94,13 @@
   }
 }
 @layer utilities {
+  .hidden-scroll::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+  .hidden-scroll {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
   .filter-primary {
     filter: invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(118%) contrast(119%);
   }

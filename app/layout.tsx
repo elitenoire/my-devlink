@@ -27,8 +27,8 @@ export default function RootLayout({
           toastOptions={{
             classNames: {
               toast:
-                'rounded-xl bg-foreground-dark gap-2 text-base text-background font-semibold py-4 px-6',
-              title: 'font-semibold',
+                'rounded-xl bg-foreground-dark gap-2 text-base text-foreground font-semibold py-4 px-6',
+              title: 'font-semibold text-background',
             },
           }}
         />
